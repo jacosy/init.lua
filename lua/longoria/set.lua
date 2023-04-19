@@ -1,3 +1,5 @@
+local vim = vim
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -6,7 +8,8 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.opt.foldmethod = "syntax"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 vim.opt.smartindent = true
 
