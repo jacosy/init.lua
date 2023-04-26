@@ -69,4 +69,6 @@ return require('packer').startup(function(use)
     use("github/copilot.vim")
     use("eandrju/cellular-automaton.nvim")
     use("laytan/cloak.nvim")
+
+    use("fatih/vim-go", { run = ':GoUpdateBinaries' })
 end)
