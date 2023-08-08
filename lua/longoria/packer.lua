@@ -71,4 +71,5 @@ return require('packer').startup(function(use)
     use("laytan/cloak.nvim")
 
     use("fatih/vim-go", { run = ':GoUpdateBinaries' })
+    use("akinsho/bufferline.nvim", { tag = '*', requires = 'nvim-tree/nvim-web-devicons' })
 end)
