@@ -20,10 +20,10 @@ end)
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -42,6 +42,18 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/longoria/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
+-- bufferline
+vim.keymap.set('n', '<leader>1', ':BufferLineGoToBuffer 1<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>2', ':BufferLineGoToBuffer 2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>3', ':BufferLineGoToBuffer 3<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>4', ':BufferLineGoToBuffer 4<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>5', ':BufferLineGoToBuffer 5<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>6', ':BufferLineGoToBuffer 6<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>7', ':BufferLineGoToBuffer 7<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>8', ':BufferLineGoToBuffer 8<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>9', ':BufferLineGoToBuffer 9<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>gD', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
