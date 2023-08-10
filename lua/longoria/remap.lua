@@ -44,15 +44,17 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/lon
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 
 -- bufferline
-vim.keymap.set('n', '<leader>1', ':BufferLineGoToBuffer 1<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>2', ':BufferLineGoToBuffer 2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>3', ':BufferLineGoToBuffer 3<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>4', ':BufferLineGoToBuffer 4<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>5', ':BufferLineGoToBuffer 5<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>6', ':BufferLineGoToBuffer 6<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>7', ':BufferLineGoToBuffer 7<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>8', ':BufferLineGoToBuffer 8<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>9', ':BufferLineGoToBuffer 9<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', ']b', ':BufferLineCycleNext<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>1', ':lua require("bufferline").go_to(1, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>2', ':lua require("bufferline").go_to(2, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>3', ':lua require("bufferline").go_to(3, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>4', ':lua require("bufferline").go_to(4, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>5', ':lua require("bufferline").go_to(5, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>6', ':lua require("bufferline").go_to(6, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>7', ':lua require("bufferline").go_to(7, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>8', ':lua require("bufferline").go_to(8, true)<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>9', ':lua require("bufferline").go_to(-1, true)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gD', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader><leader>", function()
