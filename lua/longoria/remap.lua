@@ -57,6 +57,10 @@ vim.keymap.set('n', '<leader>8', ':lua require("bufferline").go_to(8, true)<CR>'
 vim.keymap.set('n', '<leader>9', ':lua require("bufferline").go_to(-1, true)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gD', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
 
+-- for solving the git conflicts
+vim.keymap.set("n", "gl", "<cmd>diffget //2<CR>")
+vim.keymap.set("n", "gr", "<cmd>diffget //3<CR>")
+
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
