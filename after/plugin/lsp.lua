@@ -9,6 +9,7 @@ lsp.ensure_installed({
     'gopls',
     'bashls',
     'lua_ls',
+    "bufls",
 })
 
 lsp.format_on_save({
@@ -16,21 +17,18 @@ lsp.format_on_save({
         ['lua_ls'] = { 'lua' },
         ['gopls'] = { 'go' },
         ['bashls'] = { 'sh' },
+        ['bufls'] = { 'proto' },
     }
 })
 
 -- Fix Undefined global 'vim'
-lsp.configure('lua-language-server', {
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { 'vim' }
-            }
-        }
-    }
-})
+lsp.nvim_workspace()
 
 lsp.configure('gopls', {
+
+})
+
+lsp.configure('bufls', {
 
 })
 
