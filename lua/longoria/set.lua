@@ -35,3 +35,6 @@ vim.opt.colorcolumn = ""
 
 -- previous settings
 vim.opt.clipboard = "unnamed,unnamedplus"
+
+-- set the default go linter to "golangci-lint"
+vim.g.go_metalinter_command = "golangci-lint"
