@@ -1,6 +1,6 @@
 require("rose-pine").setup({
     --- @usage 'main'|'moon'|'dawn'
-    dark_variant = 'main',
+    dark_variant = 'moon',
     bold_vert_split = false,
     dim_nc_background = false,
     disable_background = true,
@@ -39,10 +39,26 @@ require("rose-pine").setup({
     -- Change specific vim highlight groups
     -- https://github.com/rose-pine/neovim/wiki/Recipes
     highlight_groups = {
-        ColorColumn = { bg = 'rose' },
+        ColorColumn   = { bg = 'rose' },
+        Type          = { fg = 'rose' },
+        Function      = { fg = 'yellow' },
+        Parameter     = { fg = 'sky' },
+        Keyword       = { italic = true },
+        --["@variable"]           = {
+        --fg = "red"
+        --},
+        --["@variable.member"]    = {
+        --fg = "blue",
+        --},
+        --["@variable.parameter"] = {
+        --fg = "sky",
+        --},
+        ["@property"] = { fg = 'gold' },
+        ["@field"]    = { fg = "red" },
         -- Blend colours against the "base" background
-        CursorLine = { bg = 'foam', blend = 10 },
-        StatusLine = { fg = 'love', bg = 'love', blend = 10 },
+        Cursor        = { bg = 'base', blend = 10, underline = true },
+        CursorLine    = { bg = 'foam', blend = 10 },
+        StatusLine    = { fg = 'love', bg = 'love', blend = 10 },
     }
 })
 
