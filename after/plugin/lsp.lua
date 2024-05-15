@@ -68,7 +68,16 @@ end)
 local lsp_config = require("lspconfig")
 local util = require("lspconfig/util")
 
-require("mason").setup({})
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
 require("mason-lspconfig").setup({
     ensure_installed = {
         "tsserver", "rust_analyzer", "gopls", "bashls",
