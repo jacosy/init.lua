@@ -70,7 +70,10 @@ local util = require("lspconfig/util")
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-    ensure_installed = { "tsserver", "rust_analyzer", "gopls", "bashls", "bufls", "lua_ls" },
+    ensure_installed = {
+        "tsserver", "rust_analyzer", "gopls", "bashls",
+        "bufls", "lua_ls", "pylsp",
+    },
     handlers = {
         lsp.default_setup,
         lua_ls = function()
@@ -99,6 +102,36 @@ require("mason-lspconfig").setup({
                         },
                         gofumpt = true,
                         staticcheck = true,
+                    }
+                }
+            })
+        end,
+        pylsp = function()
+            lsp_config.pylsp.setup({
+                on_attach = lsp.on_attach,
+                capabilities = lsp.capabilities,
+                cmd = { "pylsp" },
+                filetypes = { "python" },
+                root_dir = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"),
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pycodestyle = { enabled = false },
+                            pydocstyle = { enabled = false },
+                            pylint = { enabled = false },
+                            flake8 = { enabled = false },
+                            yapf = { enabled = false },
+                            autopep8 = { enabled = false },
+                            mypy = { enabled = false },
+                            isort = { enabled = false },
+                            jedi = { enabled = false },
+                            mccabe = { enabled = false },
+                            pyflakes = { enabled = false },
+                            rope = { enabled = false },
+                            pyls_isort = { enabled = true },
+                            pyls_black = { enabled = true },
+                            pyls_mypy = { enabled = true },
+                        }
                     }
                 }
             })
