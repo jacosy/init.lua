@@ -37,28 +37,42 @@ require("rose-pine").setup({
         -- headings = 'subtle'
     },
     -- Change specific vim highlight groups
-    -- https://github.com/rose-pine/neovim/wiki/Recipes
+    -- https://github.com/rose-pine/neovim/blob/main/lua/rose-pine.lua
     highlight_groups = {
-        ColorColumn   = { bg = 'rose' },
-        Type          = { fg = 'rose' },
-        Function      = { fg = 'yellow' },
-        Parameter     = { fg = 'sky' },
-        Keyword       = { italic = true },
-        --["@variable"]           = {
-        --fg = "red"
-        --},
-        --["@variable.member"]    = {
-        --fg = "blue",
-        --},
-        --["@variable.parameter"] = {
-        --fg = "sky",
-        --},
-        ["@property"] = { fg = 'gold' },
-        ["@field"]    = { fg = "red" },
+        ColorColumn               = { bg = 'rose' },
+
+        --- Functions
+        Function                  = { fg = 'yellow' },
+        ["@function"]             = { fg = 'yellow' },
+        ["@function.builtin"]     = { fg = 'yellow', bold = true },
+        -- ["@function.call"] = {},
+        ["@function.macro"]       = { link = "Function" },
+        ["@function.method"]      = { fg = 'yellow' },
+        ["@function.method.call"] = { fg = 'yellow' },
+
+        Keyword                   = { italic = true },
+
+        --- Types
+        ["@type"]                 = { fg = 'subtle' },
+        ["@type.builtin"]         = { fg = 'pine', bold = true },
+        -- ["@type.definition"] = {},
+        -- ["@type.qualifier"] = {},
+
+        --- Identifiers
+        Identifier                = { fg = 'red' },
+        -- ["@variable"]         = { fg = 'iris', italic = true },
+        -- ["@variable.builtin"]   = { fg = palette.love, bold = styles.bold },
+        ["@parameter"]            = { fg = 'red', italic = true },
+        ["@variable.parameter"]   = { fg = 'red', italic = true },
+        ["@variable.member"]      = { fg = 'gold' },
+
+        ["@property"]             = { fg = 'gold', italic = true },
+        -- ["@attribute"]        = { fg = "red" },
+
         -- Blend colours against the "base" background
-        Cursor        = { bg = 'base', blend = 10, underline = true },
-        CursorLine    = { bg = 'foam', blend = 10 },
-        StatusLine    = { fg = 'love', bg = 'love', blend = 10 },
+        Cursor                    = { bg = 'base', blend = 10, underline = true },
+        CursorLine                = { bg = 'foam', blend = 10 },
+        StatusLine                = { fg = 'love', bg = 'love', blend = 10 },
     }
 })
 
