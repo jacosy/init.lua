@@ -105,10 +105,6 @@ require("mason-lspconfig").setup({
                             unusedparams = true,
                             shadow = true,
                         },
-                        syntax = {
-                            check = true,
-                            diagnostics = true,
-                        },
                         gofumpt = true,
                         staticcheck = true,
                     }
