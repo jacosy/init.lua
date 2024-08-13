@@ -8,6 +8,7 @@ lsp.format_on_save({
         ['gopls'] = { 'go' },
         ['bashls'] = { 'sh' },
         ['bufls'] = { 'proto' },
+        ['ruff'] = { 'python' },
     }
 })
 
@@ -81,7 +82,7 @@ require("mason").setup({
 require("mason-lspconfig").setup({
     ensure_installed = {
         "tsserver", "rust_analyzer", "gopls", "bashls",
-        "bufls", "lua_ls", "pylsp",
+        "bufls", "lua_ls", "pyright",
     },
     handlers = {
         lsp.default_setup,
@@ -111,31 +112,23 @@ require("mason-lspconfig").setup({
                 }
             })
         end,
-        pylsp = function()
-            lsp_config.pylsp.setup({
+        pyright = function()
+            lsp_config.pyright.setup({
                 on_attach = lsp.on_attach,
                 capabilities = lsp.capabilities,
-                cmd = { "pylsp" },
+                cmd = { "pyright-langserver", "--stdio" },
                 filetypes = { "python" },
-                root_dir = util.root_pattern("pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git"),
+                root_dir = util.root_pattern("pyproject.toml", "setup.py", ".git"),
                 settings = {
-                    pylsp = {
-                        plugins = {
-                            pycodestyle = { enabled = false },
-                            pydocstyle = { enabled = false },
-                            pylint = { enabled = false },
-                            flake8 = { enabled = false },
-                            yapf = { enabled = false },
-                            autopep8 = { enabled = false },
-                            mypy = { enabled = false },
-                            isort = { enabled = false },
-                            jedi = { enabled = false },
-                            mccabe = { enabled = false },
-                            pyflakes = { enabled = false },
-                            rope = { enabled = false },
-                            pyls_isort = { enabled = true },
-                            pyls_black = { enabled = true },
-                            pyls_mypy = { enabled = true },
+                    python = {
+                        disableLanguageServices = false,
+                        disableOrganizeImports = false,
+                        analysis = {
+                            typeCheckingMode = "basic",
+                            useLibraryCodeForTypes = true,
+                            diagnosticMode = "openFilesOnly",
+                            autoImportCompletions = true,
+                            autoSearchPaths = true,
                         }
                     }
                 }
