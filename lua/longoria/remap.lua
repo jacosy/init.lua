@@ -32,8 +32,6 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -56,6 +54,12 @@ vim.keymap.set('n', '<leader>7', ':lua require("bufferline").go_to(7, true)<CR>'
 vim.keymap.set('n', '<leader>8', ':lua require("bufferline").go_to(8, true)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>9', ':lua require("bufferline").go_to(-1, true)<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>gD', ':BufferLinePickClose<CR>', { noremap = true, silent = true })
+
+-- navigate vim panels
+vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
+vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
+vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
+vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
 
 -- for solving the git conflicts
 vim.keymap.set("n", "gL", "<cmd>diffget //2<CR>")
