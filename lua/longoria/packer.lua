@@ -73,4 +73,8 @@ return require('packer').startup(function(use)
 
     use("fatih/vim-go", { run = ':GoUpdateBinaries' })
     use("akinsho/bufferline.nvim", { tag = '*', requires = 'nvim-tree/nvim-web-devicons' })
+    use("christoomey/vim-tmux-navigator")
+    use {
+        "vim-test/vim-test", requires = { { "preservim/vimux" } }
+    }
 end)
