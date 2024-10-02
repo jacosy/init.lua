@@ -28,6 +28,20 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 -- close quickfix window
 vim.keymap.set("n", "<C-c>", ":cclose<CR>", { noremap = true })
 
+-- fix the <CR> not working in the quickfix window
+-- Create or get the autocommand group
+local group = vim.api.nvim_create_augroup("QuickfixMappings", { clear = true })
+
+-- Create an autocommand for the 'qf' (quickfix) filetype
+vim.api.nvim_create_autocmd("FileType", {
+    group = group, -- Associate with the group
+    pattern = "qf", -- Trigger when the filetype is 'qf' (quickfix)
+    callback = function()
+        -- Define the key mapping (nnoremap <buffer> <CR> <CR>)
+        vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', '<CR>', { noremap = true, silent = true })
+    end,
+})
+
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
