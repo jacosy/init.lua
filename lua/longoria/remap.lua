@@ -34,7 +34,7 @@ local group = vim.api.nvim_create_augroup("QuickfixMappings", { clear = true })
 
 -- Create an autocommand for the 'qf' (quickfix) filetype
 vim.api.nvim_create_autocmd("FileType", {
-    group = group, -- Associate with the group
+    group = group,  -- Associate with the group
     pattern = "qf", -- Trigger when the filetype is 'qf' (quickfix)
     callback = function()
         -- Define the key mapping (nnoremap <buffer> <CR> <CR>)
@@ -74,6 +74,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<C-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>")
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>")
+
+-- split vim panel
+vim.keymap.set("n", "<C-w>|", ":vs<CR>")
+vim.keymap.set("n", "<C-w>%", ":sp<CR>")
 
 -- for solving the git conflicts
 vim.keymap.set("n", "gL", "<cmd>diffget //2<CR>")
