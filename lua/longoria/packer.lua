@@ -75,4 +75,39 @@ return require('packer').startup(function(use)
     use("akinsho/bufferline.nvim", { tag = '*', requires = 'nvim-tree/nvim-web-devicons' })
     use("christoomey/vim-tmux-navigator")
     use("tpope/vim-unimpaired")
+
+    use({
+        "olimorris/codecompanion.nvim",
+        config = function()
+            require("codecompanion").setup({
+                adapters = {
+                    copilot = function()
+                        return require("codecompanion.adapters").extend("copilot", {
+                            env = {
+                                api_key = "GITHUB_TOKEN"
+                            },
+                        })
+                    end,
+                },
+                strategies = {
+                    chat = {
+                        adapter = "copilot",
+                    },
+                    inline = {
+                        adapter = "copilot",
+                    },
+                    agent = {
+                        adapter = "copilot",
+                    },
+                },
+            })
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "hrsh7th/nvim-cmp",              -- Optional: For using slash commands and variables in the chat buffer
+            "nvim-telescope/telescope.nvim", -- Optional: For using slash commands
+            "stevearc/dressing.nvim"         -- Optional: Improves `vim.ui.select`
+        }
+    })
 end)
