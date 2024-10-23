@@ -134,6 +134,15 @@ require("mason-lspconfig").setup({
                 }
             })
         end,
+        bufls = function()
+            lsp_config.bufls.setup({
+                on_attach = lsp.on_attach,
+                capabilities = lsp.capabilities,
+                cmd = { "bufls", "serve" },
+                filetypes = { "proto" },
+                root_dir = util.root_pattern("buf.yaml", ".git"),
+            })
+        end,
     }
 })
 
