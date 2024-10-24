@@ -9,13 +9,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("n", "<leader>vwm", function()
-    require("vim-with-me").StartVimWithMe()
-end)
-vim.keymap.set("n", "<leader>svwm", function()
-    require("vim-with-me").StopVimWithMe()
-end)
-
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
@@ -27,20 +20,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- close quickfix window
 vim.keymap.set("n", "<C-c>", ":cclose<CR>", { noremap = true })
-
--- fix the <CR> not working in the quickfix window
--- Create or get the autocommand group
-local group = vim.api.nvim_create_augroup("QuickfixMappings", { clear = true })
-
--- Create an autocommand for the 'qf' (quickfix) filetype
-vim.api.nvim_create_autocmd("FileType", {
-    group = group,  -- Associate with the group
-    pattern = "qf", -- Trigger when the filetype is 'qf' (quickfix)
-    callback = function()
-        -- Define the key mapping (nnoremap <buffer> <CR> <CR>)
-        vim.api.nvim_buf_set_keymap(0, 'n', '<CR>', '<CR>', { noremap = true, silent = true })
-    end,
-})
 
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
@@ -54,6 +33,8 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/longoria/packer.lua<CR>");
 vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
+
+vim.keymap.set("n", "<leader>w", ":bd<CR>", { noremap = true, silent = true })
 
 -- bufferline
 vim.keymap.set('n', '[b', ':BufferLineCyclePrev<CR>', { noremap = true, silent = true })
