@@ -126,6 +126,7 @@ return require('packer').startup(function(use)
 
     use({
         'stevearc/oil.nvim',
+        -- config is copied from: https://github.com/tjdevries/config.nvim/blob/e47e28da1da65f5aafbf8bd6431f628ad51d1f8f/lua/custom/plugins/oil.lua
         config = function()
             CustomOilBar = function()
                 local path = vim.fn.expand "%"
