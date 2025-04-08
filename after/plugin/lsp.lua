@@ -7,7 +7,7 @@ lsp.format_on_save({
         ['lua_ls'] = { 'lua' },
         ['gopls'] = { 'go' },
         ['bashls'] = { 'sh' },
-        ['bufls'] = { 'proto' },
+        ['buf_ls'] = { 'proto' },
         ['ruff'] = { 'python' },
     }
 })
@@ -82,7 +82,7 @@ require("mason").setup({
 require("mason-lspconfig").setup({
     ensure_installed = {
         "rust_analyzer", "gopls", "bashls",
-        "bufls", "lua_ls", "pyright",
+        "buf_ls", "lua_ls", "pyright",
     },
     handlers = {
         lsp.default_setup,
@@ -134,11 +134,11 @@ require("mason-lspconfig").setup({
                 }
             })
         end,
-        bufls = function()
-            lsp_config.bufls.setup({
+        buf_ls = function()
+            lsp_config.buf_ls.setup({
                 on_attach = lsp.on_attach,
                 capabilities = lsp.capabilities,
-                cmd = { "bufls", "serve" },
+                cmd = { "buf", "beta", "lsp" },
                 filetypes = { "proto" },
                 root_dir = util.root_pattern("buf.yaml", ".git"),
             })
