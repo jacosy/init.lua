@@ -79,74 +79,94 @@ require("mason").setup({
     }
 })
 
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        "rust_analyzer", "gopls", "bashls",
-        "buf_ls", "lua_ls", "pyright",
-    },
-    handlers = {
-        lsp.default_setup,
-        lua_ls = function()
-            local lua_opts = lsp.nvim_lua_ls()
-            lsp_config.lua_ls.setup(lua_opts)
-        end,
-        gopls = function()
-            lsp_config.gopls.setup({
-                on_attach = lsp.on_attach,
-                capabilities = lsp.capabilities,
-                cmd = { "gopls" },
-                filetypes = { "go", "gomod", "gosum", "gowork", "gotmpl" },
-                root_dir = util.root_pattern("go.mod", ".git", "go.work"),
-                settings = {
-                    gopls = {
-                        completeUnimported = true,
-                        usePlaceholders = true,
-                        semanticTokens = true,
-                        analyses = {
-                            unusedparams = true,
-                            shadow = true,
-                        },
-                        gofumpt = true,
-                        staticcheck = true,
-                    }
-                }
-            })
-        end,
-        pyright = function()
-            lsp_config.pyright.setup({
-                on_attach = lsp.on_attach,
-                capabilities = lsp.capabilities,
-                cmd = { "pyright-langserver", "--stdio" },
-                filetypes = { "python" },
-                root_dir = util.root_pattern("pyproject.toml", "setup.py", ".git"),
-                settings = {
-                    python = {
-                        disableLanguageServices = false,
-                        disableOrganizeImports = false,
-                        analysis = {
-                            typeCheckingMode = "basic",
-                            useLibraryCodeForTypes = true,
-                            diagnosticMode = "openFilesOnly",
-                            autoImportCompletions = true,
-                            autoSearchPaths = true,
-                        }
-                    }
-                }
-            })
-        end,
-        buf_ls = function()
-            lsp_config.buf_ls.setup({
-                on_attach = lsp.on_attach,
-                capabilities = lsp.capabilities,
-                cmd = { "buf", "beta", "lsp" },
-                filetypes = { "proto" },
-                root_dir = util.root_pattern("buf.yaml", ".git"),
-            })
-        end,
+-- For gopls
+lsp.configure('gopls', {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gosum", "gowork", "gotmpl" },
+    root_dir = require("lspconfig/util").root_pattern("go.mod", ".git", "go.work"),
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            semanticTokens = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            gofumpt = true,
+            staticcheck = true,
+        }
     }
 })
 
+-- Configure Mason-LSPCONFIG through lsp-zero's interface
+lsp.setup_servers({
+    "rust_analyzer", "gopls", "bashls",
+    "buf_ls", "lua_ls", "pyright",
+})
+
+-- You can provide custom settings for each server using lsp.configure
+-- Remove the `require("mason-lspconfig").setup` block with handlers.
+-- Instead, use lsp.configure for each server where you need custom settings.
+
+-- For gopls
+lsp.configure('gopls', {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gosum", "gowork", "gotmpl" },
+    root_dir = require("lspconfig/util").root_pattern("go.mod", ".git", "go.work"),
+    settings = {
+        gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            semanticTokens = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            gofumpt = true,
+            staticcheck = true,
+        }
+    }
+})
+
+-- For pyright
+lsp.configure('pyright', {
+    cmd = { "pyright-langserver", "--stdio" },
+    filetypes = { "python" },
+    root_dir = require("lspconfig/util").root_pattern("pyproject.toml", "setup.py", ".git"),
+    settings = {
+        python = {
+            disableLanguageServices = false,
+            disableOrganizeImports = false,
+            analysis = {
+                typeCheckingMode = "basic",
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "openFilesOnly",
+                autoImportCompletions = true,
+                autoSearchPaths = true,
+            }
+        }
+    }
+})
+
+-- For buf_ls
+lsp.configure('buf_ls', {
+    cmd = { "buf", "beta", "lsp" },
+    filetypes = { "proto" },
+    root_dir = require("lspconfig/util").root_pattern("buf.yaml", ".git"),
+})
+
+-- For lua_ls, lsp-zero has a dedicated function
+-- You can use lsp.nvim_lua_ls() if you want the default lua_ls setup from lsp-zero
+-- Or configure it manually if you have specific needs beyond `lsp.nvim_lua_ls()`
+lsp.configure('lua_ls', lsp.nvim_lua_ls())
+
+-- `lsp.setup()` needs to be called after all configurations.
+-- This function calls `mason-lspconfig.setup` and `lspconfig.<server>.setup` internally
+-- based on what you've configured with `lsp.setup_servers` and `lsp.configure`.
 lsp.setup()
+
+-- *** END OF MODIFICATIONS ***
 
 vim.diagnostic.config({
     virtual_text = true
