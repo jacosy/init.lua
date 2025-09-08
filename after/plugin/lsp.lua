@@ -102,7 +102,7 @@ lsp.configure('gopls', {
 -- Configure Mason-LSPCONFIG through lsp-zero's interface
 lsp.setup_servers({
     "rust_analyzer", "gopls", "bashls",
-    "buf_ls", "lua_ls", "pyright",
+    "buf_ls", "lua_ls", "pyright", "yamlls",
 })
 
 -- You can provide custom settings for each server using lsp.configure
