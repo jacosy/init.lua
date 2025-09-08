@@ -51,9 +51,10 @@ require("rose-pine").setup({
         ["@function.method.call"] = { fg = 'yellow' },
 
         Keyword                   = { italic = true },
+        String                    = { fg = "gold" },
 
         --- Types
-        ["@type"]                 = { fg = 'subtle' },
+        ["@type"]                 = { fg = 'foam', bold = true },
         ["@type.builtin"]         = { fg = 'pine', bold = true },
         -- ["@type.definition"] = {},
         -- ["@type.qualifier"] = {},
@@ -64,9 +65,9 @@ require("rose-pine").setup({
         -- ["@variable.builtin"]   = { fg = palette.love, bold = styles.bold },
         ["@parameter"]            = { fg = 'red', italic = true },
         ["@variable.parameter"]   = { fg = 'red', italic = true },
-        ["@variable.member"]      = { fg = 'gold' },
+        ["@variable.member"]      = { fg = 'love' },
 
-        ["@property"]             = { fg = 'gold', italic = true },
+        ["@property"]             = { fg = 'love', italic = true },
         -- ["@attribute"]        = { fg = "red" },
 
         -- Blend colours against the "base" background
